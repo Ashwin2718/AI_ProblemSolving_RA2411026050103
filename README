@@ -1,0 +1,45 @@
+Tic Tac Toe (Player vs AI)
+
+A simple web-based Tic Tac Toe game built using Flask, HTML, CSS, and JavaScript, where the player competes against an AI opponent.
+
+🚀 Features
+👤 Player vs Computer mode
+🤖 AI opponent with smart move logic
+🎨 Modern and clean UI design
+⚡ Fast and lightweight gameplay
+🔁 Restart game option
+📱 Responsive design for mobile and desktop
+🛠️ Tech Stack
+Frontend: HTML, CSS, JavaScript
+Backend: Python (Flask)
+Deployment: Render
+📁 Project Structure
+app.py
+templates/index.html
+static/style.css
+static/script.js
+⚙️ How to Run Locally
+Install Flask:
+pip install flask
+Run the app:
+python app.py
+Open browser:
+http://127.0.0.1:5000/
+🤖 AI Logic
+Checks for winning move
+Blocks player’s winning move
+Takes center if available
+Otherwise selects a random move
+🌐 Deployment
+
+Deployed using Render with:
+
+Start command: gunicorn app:app
+📌 Future Improvements
+Minimax unbeatable AI
+Score tracking system
+Sound effects
+Better mobile UI
+👨‍💻 Author
+
+Built as a learning project using Flask and JavaScript.
