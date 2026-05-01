@@ -1,4 +1,6 @@
 Tic Tac Toe (Player vs AI)
+LIVE WEBISTE LINK
+https://ai-problemsolving-ra2411026050103-1.onrender.com
 
 A simple web-based Tic Tac Toe game built using Flask, HTML, CSS, and JavaScript, where the player competes against an AI opponent.
 
@@ -23,8 +25,7 @@ Install Flask:
 pip install flask
 Run the app:
 python app.py
-Open browser:
-http://127.0.0.1:5000/
+
 🤖 AI Logic
 Checks for winning move
 Blocks player’s winning move
