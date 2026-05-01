@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            text-align:center;
+            background:#f5f5f5;
+        }
+
+        h1{
+            margin-top:30px;
+        }
+
+        .board{
+            width:300px;
+            margin:30px auto;
+            display:grid;
+            grid-template-columns: repeat(3,100px);
+        }
+
+        .cell{
+            width:100px;
+            height:100px;
+            border:2px solid black;
+            font-size:40px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            cursor:pointer;
+            background:white;
+        }
+
+        .cell:hover{
+            background:#eaeaea;
+        }
+
+        #status{
+            font-size:24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Tic Tac Toe</h1>
+
+    <div class="board" id="board"></div>
+
+    <h2 id="status"></h2>
+
+    <script>
+
+        const boardDiv = document.getElementById("board");
+        const statusText = document.getElementById("status");
+
+        let cells = [];
+
+        for(let i = 0; i < 9; i++){
+
+            const cell = document.createElement("div");
+
+            cell.classList.add("cell");
+
+            cell.addEventListener("click", async () => {
+
+                const response = await fetch("/move", {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+
+                    body: JSON.stringify({
+                        index:i
+                    })
+                });
+
+                const data = await response.json();
+
+                if(data.board){
+
+                    updateBoard(data.board);
+
+                    if(data.winner){
+                        statusText.innerText = data.winner + " Wins!";
+                    }
+                }
+            });
+
+            boardDiv.appendChild(cell);
+
+            cells.push(cell);
+        }
+
+
+        function updateBoard(board){
+
+            for(let i = 0; i < 9; i++){
+                cells[i].innerText = board[i];
+            }
+        }
+
+    </script>
+
+</body>
+</html>
