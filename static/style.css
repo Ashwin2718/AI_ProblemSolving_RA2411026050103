@@ -1,58 +1,44 @@
-from flask import Flask, render_template, request, jsonify
+body{
+    font-family: Arial;
+    text-align: center;
+    background-color: #f5f5f5;
+}
 
-app = Flask(__name__)
+h1{
+    margin-top: 30px;
+}
 
-board = [""] * 9
-current_player = "X"
+.board{
+    width: 300px;
+    margin: 30px auto;
 
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+}
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+.cell{
+    width: 100px;
+    height: 100px;
 
+    border: 2px solid black;
 
-@app.route("/move", methods=["POST"])
-def move():
-    global current_player
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    data = request.json
-    index = data["index"]
+    font-size: 40px;
+    font-weight: bold;
 
-    if board[index] == "":
-        board[index] = current_player
+    background: white;
 
-        winner = check_winner()
+    cursor: pointer;
+}
 
-        response = {
-            "board": board,
-            "winner": winner
-        }
+.cell:hover{
+    background-color: #eaeaea;
+}
 
-        current_player = "O" if current_player == "X" else "X"
-
-        return jsonify(response)
-
-    return jsonify({"error": "Invalid move"})
-
-
-def check_winner():
-    wins = [
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [2,4,6]
-    ]
-
-    for a, b, c in wins:
-        if board[a] and board[a] == board[b] == board[c]:
-            return board[a]
-
-    return None
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+#status{
+    font-size: 24px;
+}

@@ -27,17 +27,19 @@
 
             cell.classList.add("cell");
 
+            cell.innerText = "";
+
             cell.addEventListener("click", async () => {
 
                 const response = await fetch("/move", {
-                    method:"POST",
+                    method: "POST",
 
-                    headers:{
-                        "Content-Type":"application/json"
+                    headers: {
+                        "Content-Type": "application/json"
                     },
 
                     body: JSON.stringify({
-                        index:i
+                        index: i
                     })
                 });
 
@@ -57,7 +59,6 @@
 
             cells.push(cell);
         }
-
 
         function updateBoard(board){
 
